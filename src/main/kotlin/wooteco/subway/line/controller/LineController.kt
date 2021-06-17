@@ -29,7 +29,12 @@ class LineController(private val lineService: LineService) {
     }
 
     @PutMapping("/{id:[\\d]+}")
-    fun updateLine(@PathVariable id: Long, @RequestBody lineRequest: LineRequest) {
+    fun updateLine(
+        @PathVariable id: Long,
+        @RequestBody lineRequest: LineRequest
+    ): ResponseEntity<Void> {
+        lineService.update(id, lineRequest)
+        return ResponseEntity.ok().build()
     }
 
     @DeleteMapping("/{id:[\\d]+}")

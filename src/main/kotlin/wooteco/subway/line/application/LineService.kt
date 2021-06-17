@@ -51,4 +51,10 @@ class LineService(
         val line = lineRepository.findLineById(id) ?: throw LineNotExistException()
         return LineResponse.of(line)
     }
+
+    fun update(id: Long, lineRequest: LineRequest) {
+        val updateLine = lineRepository.findLineById(id) ?: throw LineNotExistException()
+        updateLine.update(lineRequest)
+        lineRepository.save(updateLine)
+    }
 }

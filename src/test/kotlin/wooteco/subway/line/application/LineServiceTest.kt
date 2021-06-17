@@ -18,7 +18,11 @@ internal class LineServiceTest {
     @DisplayName("노선을 저장한다.")
     fun save() {
         val lineRequest = LineRequest("2호선", "주황색", 1L, 2L, 10)
-        lineService.save(lineRequest)
+        val saveLine = lineService.save(lineRequest)
     }
 
+    @Test
+    fun `노선을 수정한다`() {
+        lineService.update(1L, LineRequest("3호선", "노랑색", 1L, 2L, 10))
+    }
 }
