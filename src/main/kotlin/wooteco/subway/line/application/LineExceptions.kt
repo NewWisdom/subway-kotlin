@@ -7,3 +7,5 @@ class ExistLineNameException : BadRequestException("이미 존재하는 노선 �
 class ExistLineColorException : BadRequestException("이미 존재하는 노선 색깔 입니다.")
 
 class SameUpAndDownStationException : BadRequestException("상행 종점, 하행 종점은 같을 수 없습니다.")
+
+class LineNotExistException : BadRequestException("조회하려는 노선이 없습니다.")

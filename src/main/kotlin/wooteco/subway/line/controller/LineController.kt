@@ -19,18 +19,17 @@ class LineController(private val lineService: LineService) {
     }
 
     @GetMapping
-    fun findAllLines() {
-
+    fun findAllLines(): ResponseEntity<List<LineResponse>> {
+        return ResponseEntity.ok(lineService.findAll())
     }
 
-    @GetMapping("/{id}")
-    fun findLineById(@PathVariable id: Long) {
-
+    @GetMapping("/{id:[\\d]+}")
+    fun findLineById(@PathVariable id: Long): ResponseEntity<LineResponse> {
+        return ResponseEntity.ok(lineService.findById(id))
     }
 
     @PutMapping("/{id:[\\d]+}")
-    fun updateLine(@PathVariable id: Long) {
-
+    fun updateLine(@PathVariable id: Long, @RequestBody lineRequest: LineRequest) {
     }
 
     @DeleteMapping("/{id:[\\d]+}")

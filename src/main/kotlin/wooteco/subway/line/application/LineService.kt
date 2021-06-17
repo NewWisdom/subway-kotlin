@@ -43,4 +43,12 @@ class LineService(
         }
     }
 
+    fun findAll(): List<LineResponse> {
+        return LineResponse.listOf(lineRepository.findAll())
+    }
+
+    fun findById(id: Long): LineResponse {
+        val line = lineRepository.findLineById(id) ?: throw LineNotExistException()
+        return LineResponse.of(line)
+    }
 }

@@ -20,4 +20,5 @@ internal class LineServiceTest {
         val lineRequest = LineRequest("2호선", "주황색", 1L, 2L, 10)
         lineService.save(lineRequest)
     }
+
 }
