@@ -29,6 +29,9 @@ dependencies {
     implementation("org.jetbrains.kotlin:kotlin-reflect")
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
 
+    // validation
+    implementation("org.springframework.boot:spring-boot-starter-validation")
+
     // log
     runtimeOnly("net.rakugakibox.spring.boot:logback-access-spring-boot-starter:2.7.1")
 
