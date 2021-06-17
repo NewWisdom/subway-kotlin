@@ -1,0 +1,15 @@
+INSERT INTO STATION(name)
+VALUES ('아마역');
+
+INSERT INTO STATION(name)
+VALUES ('마찌역');
+
+INSERT INTO STATION(name)
+VALUES ('잠실역');
+
+INSERT INTO STATION(name)
+VALUES ('강남역');
+
+INSERT INTO STATION(name)
+VALUES ('삼전역');
+
