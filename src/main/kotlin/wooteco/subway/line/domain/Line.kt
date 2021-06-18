@@ -13,7 +13,6 @@ class Line(
     var name: String,
     @Column(unique = true, nullable = false)
     var color: String,
-
     var extraFare: Int? = null,
 
     @Embedded
