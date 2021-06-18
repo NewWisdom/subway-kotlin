@@ -3,7 +3,6 @@ package wooteco.subway.line.dto
 import wooteco.subway.line.domain.Line
 import wooteco.subway.line.domain.Section
 import wooteco.subway.station.application.StationResponse
-import java.util.stream.Collectors
 import javax.validation.constraints.NotBlank
 import javax.validation.constraints.NotNull
 import javax.validation.constraints.Pattern
@@ -49,11 +48,17 @@ data class LineResponse(
         }
 
         fun listOf(lines: List<Line>): List<LineResponse> {
-            return lines.map{of(it)}
+            return lines.map { of(it) }
         }
 
     }
 }
+
+data class SectionRequest(
+    var upStationId: Long,
+    var downStationId: Long,
+    var distance: Int
+)
 
 data class SectionResponse(
     var upStation: StationResponse,

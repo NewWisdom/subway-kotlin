@@ -5,6 +5,7 @@ import org.springframework.transaction.annotation.Transactional
 import wooteco.subway.line.domain.Section
 import wooteco.subway.line.dto.LineRequest
 import wooteco.subway.line.dto.LineResponse
+import wooteco.subway.line.dto.SectionRequest
 import wooteco.subway.line.repository.LineRepository
 import wooteco.subway.line.repository.SectionRepository
 import wooteco.subway.station.application.StationNotExistException
@@ -32,10 +33,6 @@ class LineService(
         return LineResponse.of(savedLine)
     }
 
-    private fun findStationByStationId(stationId: Long) =
-        (stationRepository.findStationById(stationId)
-            ?: throw StationNotExistException())
-
     private fun checkExistInfo(lineRequest: LineRequest) {
         if (lineRepository.findLineByName(lineRequest.name) != null) {
             throw ExistLineNameException()
@@ -44,6 +41,10 @@ class LineService(
             throw ExistLineColorException()
         }
     }
+
+    private fun findStationByStationId(stationId: Long) =
+        (stationRepository.findStationById(stationId)
+            ?: throw StationNotExistException())
 
     fun findAll(): List<LineResponse> {
         return LineResponse.listOf(lineRepository.findAll())
@@ -64,5 +65,14 @@ class LineService(
     @Transactional
     fun deleteLineById(id: Long) {
         lineRepository.deleteById(id)
+    }
+
+    @Transactional
+    fun addSection(lineId: Long, sectionRequest: SectionRequest) {
+        val line = lineRepository.findLineById(lineId) ?: throw LineNotExistException()
+        val upStation = findStationByStationId(sectionRequest.upStationId)
+        val downStation = findStationByStationId(sectionRequest.downStationId)
+        line.addSection(upStation, downStation, sectionRequest.distance)
+        lineRepository.save(line)
     }
 }

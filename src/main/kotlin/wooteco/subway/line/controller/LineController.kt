@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.*
 import wooteco.subway.line.application.LineService
 import wooteco.subway.line.dto.LineRequest
 import wooteco.subway.line.dto.LineResponse
+import wooteco.subway.line.dto.SectionRequest
 import java.net.URI
 
 @RestController
@@ -41,5 +42,14 @@ class LineController(private val lineService: LineService) {
     fun deleteLine(@PathVariable id: Long): ResponseEntity<Void> {
         lineService.deleteLineById(id)
         return ResponseEntity.noContent().build()
+    }
+
+    @PostMapping("/{lineId:[\\d]+}/sections")
+    fun addSection(
+        @PathVariable lineId: Long,
+        @RequestBody sectionRequest: SectionRequest
+    ): ResponseEntity<Void> {
+        lineService.addSection(lineId, sectionRequest)
+        return ResponseEntity.ok().build()
     }
 }

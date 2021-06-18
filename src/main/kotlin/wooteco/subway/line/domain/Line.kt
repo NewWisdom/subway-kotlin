@@ -1,5 +1,6 @@
 package wooteco.subway.line.domain
 
+import wooteco.subway.line.application.NotOnlyOneRegisteredStationInSection
 import wooteco.subway.line.dto.LineRequest
 import wooteco.subway.station.domain.Station
 import javax.persistence.*
@@ -25,5 +26,10 @@ class Line(
     fun update(lineRequest: LineRequest) {
         this.name = lineRequest.name
         this.color = lineRequest.color
+    }
+
+    fun addSection(upStation: Station, downStation: Station, distance: Int) {
+        val section = Section(upStation = upStation, downStation = downStation, distance = distance)
+        sections.addSection(section)
     }
 }
