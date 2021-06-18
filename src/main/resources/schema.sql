@@ -17,13 +17,13 @@ create table if not exists LINE
 create table if not exists SECTION
 (
     id bigint auto_increment not null,
-    line_id bigint not null,
+    line_id bigint not null references LINE(id) on delete cascade on update cascade ,
     up_station_id bigint not null,
     down_station_id bigint not null,
     distance int not null,
     primary key(id),
-    foreign key (up_station_id) references STATION(id),
-    foreign key (down_station_id) references STATION(id)
+    foreign key (up_station_id) references STATION(id) on delete cascade on update cascade ,
+    foreign key (down_station_id) references STATION(id) on delete cascade on update cascade
 );
 
 create table if not exists MEMBER

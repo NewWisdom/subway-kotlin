@@ -1,6 +1,7 @@
 package wooteco.subway.line.application
 
 import org.springframework.stereotype.Service
+import org.springframework.transaction.annotation.Transactional
 import wooteco.subway.line.domain.Section
 import wooteco.subway.line.dto.LineRequest
 import wooteco.subway.line.dto.LineResponse
@@ -15,6 +16,7 @@ class LineService(
     val stationRepository: StationRepository,
     val sectionRepository: SectionRepository
 ) {
+    @Transactional
     fun save(lineRequest: LineRequest): LineResponse {
         checkExistInfo(lineRequest)
         val upStation = findStationByStationId(lineRequest.upStationId)
@@ -52,9 +54,15 @@ class LineService(
         return LineResponse.of(line)
     }
 
-    fun update(id: Long, lineRequest: LineRequest) {
+    @Transactional
+    fun updateLine(id: Long, lineRequest: LineRequest) {
         val updateLine = lineRepository.findLineById(id) ?: throw LineNotExistException()
         updateLine.update(lineRequest)
         lineRepository.save(updateLine)
+    }
+
+    @Transactional
+    fun deleteLineById(id: Long) {
+        lineRepository.deleteById(id)
     }
 }

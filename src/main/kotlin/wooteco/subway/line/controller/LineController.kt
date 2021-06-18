@@ -33,12 +33,13 @@ class LineController(private val lineService: LineService) {
         @PathVariable id: Long,
         @RequestBody lineRequest: LineRequest
     ): ResponseEntity<Void> {
-        lineService.update(id, lineRequest)
+        lineService.updateLine(id, lineRequest)
         return ResponseEntity.ok().build()
     }
 
     @DeleteMapping("/{id:[\\d]+}")
-    fun deleteLine(@PathVariable id: Long) {
-
+    fun deleteLine(@PathVariable id: Long): ResponseEntity<Void> {
+        lineService.deleteLineById(id)
+        return ResponseEntity.noContent().build()
     }
 }

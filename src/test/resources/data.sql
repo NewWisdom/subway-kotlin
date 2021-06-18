@@ -12,6 +12,3 @@ VALUES ('강남역');
 
 INSERT INTO STATION(name)
 VALUES ('삼전역');
-
-INSERT INTO LINE(name, color)
-VALUES ('9호선', 'bg-red-600');
