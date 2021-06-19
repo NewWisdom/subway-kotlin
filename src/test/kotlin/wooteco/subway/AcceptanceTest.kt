@@ -8,7 +8,7 @@ import org.springframework.test.annotation.DirtiesContext
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @DirtiesContext(classMode = DirtiesContext.ClassMode.BEFORE_EACH_TEST_METHOD)
-open class AcceptanceTest {
+class AcceptanceTest {
     @LocalServerPort
     var port = 0
 
