@@ -6,9 +6,11 @@ import org.junit.jupiter.api.DisplayName
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.test.annotation.DirtiesContext
+import org.springframework.test.context.ActiveProfiles
 import wooteco.subway.line.dto.LineRequest
 
 @SpringBootTest
+@ActiveProfiles("test")
 internal class LineServiceTest {
     @Autowired
     lateinit var lineService: LineService
