@@ -8,14 +8,15 @@ class Section(
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     val id: Long = 0L,
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     val upStation: Station,
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     val downStation: Station,
     @Column(nullable = false)
     val distance: Int,
 
-    @ManyToOne
+    @Column(nullable = false)
+    @ManyToOne(fetch = FetchType.LAZY)
     var line: Line? = null
 ) {
     fun changeLine(line: Line) {
