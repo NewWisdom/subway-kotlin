@@ -52,4 +52,13 @@ class LineController(private val lineService: LineService) {
         lineService.addSection(lineId, sectionRequest)
         return ResponseEntity.ok().build()
     }
+
+    @DeleteMapping("/{lineId}/sections")
+    fun deleteLineSection(
+        @PathVariable lineId: Long,
+        @RequestParam stationId: Long
+    ): ResponseEntity<Void> {
+        lineService.deleteSection(lineId, stationId)
+        return ResponseEntity.ok().build()
+    }
 }

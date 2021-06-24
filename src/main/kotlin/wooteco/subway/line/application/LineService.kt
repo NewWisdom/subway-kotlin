@@ -75,4 +75,12 @@ class LineService(
         line.addSection(upStation, downStation, sectionRequest.distance)
         lineRepository.save(line)
     }
+
+    @Transactional
+    fun deleteSection(lineId: Long, stationId: Long) {
+        val line = lineRepository.findLineById(lineId) ?: throw LineNotExistException()
+        val station =
+            stationRepository.findStationById(stationId) ?: throw StationNotExistException()
+        line.removeSectionByStation(station)
+    }
 }

@@ -1,5 +1,6 @@
 package wooteco.subway.line.domain
 
+import wooteco.subway.line.application.NotAbleToDeleteInSectionException
 import wooteco.subway.line.application.NotOnlyOneRegisteredStationInSection
 import wooteco.subway.line.application.SameUpAndDownStationException
 import wooteco.subway.line.application.SectionDistanceInvalidException
@@ -89,5 +90,27 @@ class Sections(
         }
         stations.find { registeredStations.contains(it) }
             ?: throw NotOnlyOneRegisteredStationInSection()
+    }
+
+    fun removeStation(station: Station) {
+        if (sections.size < 2) {
+            throw NotAbleToDeleteInSectionException()
+        }
+        val upSection = sections.find { it.upStation == station }
+        val downSection = sections.find { it.downStation == station }
+        if (upSection != null && downSection != null) {
+            val newUpStation = downSection.upStation
+            val newDownStation = upSection.downStation
+            val newDistance = upSection.distance + downSection.distance
+            sections.add(
+                Section(
+                    upStation = newUpStation,
+                    downStation = newDownStation,
+                    distance = newDistance
+                )
+            )
+        }
+        upSection.let { sections.remove(it) }
+        downSection.let { sections.remove(it) }
     }
 }

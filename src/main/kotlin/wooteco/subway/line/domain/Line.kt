@@ -1,6 +1,5 @@
 package wooteco.subway.line.domain
 
-import wooteco.subway.line.application.NotOnlyOneRegisteredStationInSection
 import wooteco.subway.line.dto.LineRequest
 import wooteco.subway.station.domain.Station
 import javax.persistence.*
@@ -31,5 +30,9 @@ class Line(
     fun addSection(upStation: Station, downStation: Station, distance: Int) {
         val section = Section(upStation = upStation, downStation = downStation, distance = distance)
         sections.addSection(section)
+    }
+
+    fun removeSectionByStation(station: Station) {
+        sections.removeStation(station)
     }
 }
