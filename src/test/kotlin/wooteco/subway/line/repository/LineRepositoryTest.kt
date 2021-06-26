@@ -47,6 +47,14 @@ class LineRepositoryTest() {
         assertThat(savedLine).isEqualTo(findLineByColor)
     }
 
+    @Test
+    fun `id로 노선을 찾는다`() {
+        val savedLine = lineRepository.save(line)
+        val findLineById = lineRepository.findLineById(savedLine.id)
+
+        assertThat(savedLine).isEqualTo(findLineById)
+    }
+
     companion object {
         val 잠실역 = Station(name = "잠실역")
         val 강남역 = Station(name = "강남역")

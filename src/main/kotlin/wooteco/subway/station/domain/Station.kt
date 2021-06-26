@@ -9,6 +9,4 @@ class Station(
     val id: Long = 0L,
     @Column(unique = true, nullable = false)
     val name: String
-) {
-
-}
+)
