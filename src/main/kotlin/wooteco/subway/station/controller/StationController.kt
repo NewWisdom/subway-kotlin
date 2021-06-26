@@ -6,12 +6,13 @@ import org.springframework.web.bind.annotation.*
 import wooteco.subway.station.application.StationService
 import wooteco.subway.station.dto.StationDto
 import java.net.URI
+import javax.validation.Valid
 
 @RestController
 @RequestMapping("/stations")
 class StationController(private val stationService: StationService) {
     @PostMapping
-    fun createStations(@RequestBody stationRequest: StationDto): ResponseEntity<StationDto> {
+    fun createStations(@Valid @RequestBody stationRequest: StationDto): ResponseEntity<StationDto> {
         val stationDto = stationService.save(stationRequest)
         return ResponseEntity.created(URI.create("/stations/${stationDto.id}")).body(stationDto)
     }

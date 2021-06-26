@@ -4,7 +4,7 @@ import wooteco.subway.station.domain.Station
 import javax.persistence.*
 
 @Entity
-class Section(
+data class Section(
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     val id: Long = 0L,
@@ -15,7 +15,6 @@ class Section(
     @Column(nullable = false)
     val distance: Int,
 
-    @Column(nullable = false)
     @ManyToOne(fetch = FetchType.LAZY)
     var line: Line? = null
 ) {

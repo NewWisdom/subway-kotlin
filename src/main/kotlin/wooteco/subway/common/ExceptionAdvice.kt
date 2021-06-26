@@ -13,7 +13,7 @@ class ExceptionAdvice(
     )
 ) {
     @ExceptionHandler(BusinessException::class)
-    fun handleRuntimeException(e: BusinessException): ResponseEntity<ErrorMessage?>? {
+    fun handleRuntimeException(e: BusinessException): ResponseEntity<ErrorMessage> {
         logger.error(e.message, e)
         return ResponseEntity.status(e.httpStatus).body(e.errorMessage)
     }

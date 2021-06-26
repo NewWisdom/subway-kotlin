@@ -6,8 +6,8 @@ import javax.validation.constraints.Pattern
 
 class StationDto(
     val id: Long? = null,
-    @NotBlank(message = "name은 필수로 입력하여야 합니다.")
-    @Pattern(regexp = "^[가-힣0-9]{2,10}$", message = "노선 이름은 2~20자 이하의 한글/숫자만 가능합니다")
+    @field:NotBlank(message = "name은 필수로 입력하여야 합니다.")
+    @field:Pattern(regexp = "^[가-힣0-9]{2,10}$", message = "노선 이름은 2~20자 이하의 한글/숫자만 가능합니다")
     val name: String
 ) {
     fun toEntity(): Station {

@@ -7,13 +7,14 @@ import wooteco.subway.line.dto.LineRequest
 import wooteco.subway.line.dto.LineResponse
 import wooteco.subway.line.dto.SectionRequest
 import java.net.URI
+import javax.validation.Valid
 
 @RestController
 @RequestMapping("/lines")
 class LineController(private val lineService: LineService) {
 
     @PostMapping
-    fun saveLine(@RequestBody lineRequest: LineRequest): ResponseEntity<LineResponse> {
+    fun saveLine(@Valid @RequestBody lineRequest: LineRequest): ResponseEntity<LineResponse> {
         val lineResponse = lineService.save(lineRequest)
         return ResponseEntity.created(URI.create("/lines/${lineResponse.id}"))
             .body(lineResponse)
@@ -32,7 +33,7 @@ class LineController(private val lineService: LineService) {
     @PutMapping("/{id:[\\d]+}")
     fun updateLine(
         @PathVariable id: Long,
-        @RequestBody lineRequest: LineRequest
+        @Valid @RequestBody lineRequest: LineRequest
     ): ResponseEntity<Void> {
         lineService.updateLine(id, lineRequest)
         return ResponseEntity.ok().build()
@@ -47,7 +48,7 @@ class LineController(private val lineService: LineService) {
     @PostMapping("/{lineId:[\\d]+}/sections")
     fun addSection(
         @PathVariable lineId: Long,
-        @RequestBody sectionRequest: SectionRequest
+        @Valid @RequestBody sectionRequest: SectionRequest
     ): ResponseEntity<Void> {
         lineService.addSection(lineId, sectionRequest)
         return ResponseEntity.ok().build()

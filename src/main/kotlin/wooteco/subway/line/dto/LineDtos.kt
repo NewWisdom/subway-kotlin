@@ -9,23 +9,24 @@ import javax.validation.constraints.Pattern
 import javax.validation.constraints.Positive
 
 data class LineRequest(
-    @NotBlank(message = "name은 필수로 입력하여야 합니다.")
-    @Pattern(regexp = "^[가-힣0-9]{2,10}$", message = "노선 이름은 2~20자 이하의 한글/숫자만 가능합니다")
+    @field:NotBlank(message = "name은 필수로 입력하여야 합니다.")
+    @field:Pattern(regexp = "^[가-힣0-9]{2,10}$", message = "노선 이름은 2~20자 이하의 한글/숫자만 가능합니다")
     var name: String,
 
-    @NotBlank(message = "color은 필수로 입력하여야 합니다.")
+    @field:NotBlank(message = "color은 필수로 입력하여야 합니다.")
     var color: String,
 
-    @NotNull(message = "상행역 ID는 필수로 입력하여야 합니다.")
+    @field:NotNull(message = "상행역 ID는 필수로 입력하여야 합니다.")
     var upStationId: Long,
 
-    @NotNull(message = "하행역 ID는 필수로 입력하여야 합니다.")
+    @field:NotNull(message = "하행역 ID는 필수로 입력하여야 합니다.")
     var downStationId: Long,
 
-    @NotNull(message = "거리 값은 필수로 입력하여야 합니다.")
-    @Positive(message = "거리 값은 0보다 커야 합니다.")
+    @field:NotNull(message = "거리 값은 필수로 입력하여야 합니다.")
+    @field:Positive(message = "거리 값은 0보다 커야 합니다.")
     var distance: Int,
 
+    @field:Positive(message = "추가 요금은 0보다 커야 합니다.")
     var extraFare: Int? = null
 ) {
     fun toEntity(): Line {
@@ -55,8 +56,11 @@ data class LineResponse(
 }
 
 data class SectionRequest(
+    @field:NotNull(message = "상행역 ID는 필수로 입력하여야 합니다.")
     var upStationId: Long,
+    @field:NotNull(message = "하행역 ID는 필수로 입력하여야 합니다.")
     var downStationId: Long,
+    @field:NotNull(message = "상행역 ID는 필수로 입력하여야 합니다.")
     var distance: Int
 )
 
