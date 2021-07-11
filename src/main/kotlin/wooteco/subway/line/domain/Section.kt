@@ -14,7 +14,6 @@ data class Section(
     val downStation: Station,
     @Column(nullable = false)
     val distance: Int,
-
     @ManyToOne(fetch = FetchType.LAZY)
     var line: Line? = null
 ) {

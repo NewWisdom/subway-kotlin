@@ -1,10 +1,10 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-    id ("org.jetbrains.kotlin.plugin.jpa") version "1.3.61"
+    id("org.jetbrains.kotlin.plugin.jpa") version "1.3.61"
     id("org.springframework.boot") version "2.5.1"
     id("io.spring.dependency-management") version "1.0.11.RELEASE"
-    id ("org.jetbrains.kotlin.plugin.allopen") version "1.3.61"
+    id("org.jetbrains.kotlin.plugin.allopen") version "1.3.61"
     kotlin("jvm") version "1.5.10"
     kotlin("plugin.spring") version "1.5.10"
 }
@@ -62,4 +62,8 @@ tasks.withType<KotlinCompile> {
 
 tasks.withType<Test> {
     useJUnitPlatform()
+}
+
+tasks.register("print") {
+    doLast { println("github push complete") }
 }
