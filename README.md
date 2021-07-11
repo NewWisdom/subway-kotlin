@@ -60,3 +60,5 @@
 
 ### 궁금
 * @Id나 연관관계 어노테이션 (@ManyToOne)에는 @Column(nullable = false) 붙이면 안된다 왜????
+
+* 내가 한 젠킨스 잘 되는지 궁금하다
